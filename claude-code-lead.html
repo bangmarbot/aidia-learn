@@ -101,10 +101,11 @@
     <p class="ln">L2</p>
     <h3>Setup &amp; first run</h3>
     <p>Claude Code = CLI. Kamu install sekali, terus jalanin dari dalam folder project. Begitu masuk, dia langsung "nyadar" konteks repo kamu.</p>
-    <pre><span class="c"># install (sekali aja)</span>
-<span class="k">npm install</span> -g @anthropic-ai/claude-code
+    <pre><span class="c"># install (pilih salah satu)</span>
+<span class="k">curl</span> -fsSL https://claude.ai/install.sh | bash   <span class="c"># native (recommended)</span>
+<span class="k">npm install</span> -g @anthropic-ai/claude-code         <span class="c"># via npm (alternatif)</span>
 
-<span class="c"># masuk ke project kamu, lalu start</span>
+<span class="c"># masuk ke project, lalu start</span>
 <span class="k">cd</span> ~/project
 <span class="k">claude</span></pre>
     <p>Sekarang kamu di dalam sesi interaktif. Ketik tujuan kamu pakai bahasa biasa. Dia bakal nanya izin pas mau ngedit/ngejalanin sesuatu yang berdampak (lebih lanjut di L5).</p>
@@ -131,7 +132,7 @@
     <p class="ln">L4</p>
     <h3>Plan mode — mikir dulu sebelum gerak</h3>
     <p>Buat perubahan gede, kamu nggak mau dia langsung ngedit 12 file. <strong>Plan mode</strong> bikin Claude Code nyusun rencana dulu — file apa yang disentuh, urutan langkah, trade-off — dan <em>nungguin approval kamu</em> sebelum nyentuh apa pun.</p>
-    <p>Alurnya: kamu masuk plan mode, kasih tujuan, dia balikin rencana, kamu baca → approve / revisi → baru dia eksekusi. Ini ngubah "semoga dia bener" jadi "rencananya udah jelas, gas".</p>
+    <p>Alurnya: kamu masuk plan mode (ketik <code class="inl">/plan</code>), kasih tujuan, dia balikin rencana, kamu baca → approve / revisi → baru dia eksekusi. Ini ngubah "semoga dia bener" jadi "rencananya udah jelas, gas".</p>
     <div class="tryit">
       <h4>Kapan dipakai</h4>
       <p>Refactor lintas-file, fitur baru, migrasi, atau apa pun yang kamu sendiri belum yakin pendekatannya. Buat edit kecil/jelas, skip — plan mode malah mperlambat.</p>
@@ -223,7 +224,7 @@ Review perubahan di branch ini. Cek:
 2. Error handling-nya bener?
 3. Ada secret/key yang ke-commit?
 Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> per poin.</pre>
-    <p>Sekarang tinggal ketik <code class="inl">/review</code> — dia jalanin checklist itu tanpa kamu ngetik ulang. Ini SOP kamu, dikodifikasi.</p>
+    <p>Sekarang tinggal ketik <code class="inl">/review</code> — dia jalanin checklist itu tanpa kamu ngetik ulang. Ini SOP kamu, dikodifikasi. <span style="color:var(--muted)">(Di versi baru Claude Code, command kayak gini udah jadi bagian "skills" — folder <code class="inl">.claude/skills/</code> juga bikin <code class="inl">/review</code> yang sama; <code class="inl">.claude/commands/</code> tetap jalan.)</span></p>
     <p class="takeaway">Slash command = SOP yang bisa dieksekusi. Kerjaan berulang kamu berhenti jadi ketikan, jadi satu kata.</p>
   </div>
 </section>
@@ -313,7 +314,7 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
   <span class="v">"hooks"</span>: {
     <span class="v">"PostToolUse"</span>: [{
       <span class="v">"matcher"</span>: <span class="s">"Edit"</span>,
-      <span class="v">"command"</span>: <span class="s">"npm run format"</span>
+      <span class="v">"hooks"</span>: [{ <span class="v">"type"</span>: <span class="s">"command"</span>, <span class="v">"command"</span>: <span class="s">"npm run format"</span> }]
     }]
   }
 }</pre>
@@ -420,7 +421,7 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
 Kamu reviewer senior. Fokus correctness & keamanan.
 Jangan ngedit kode — lapor temuan + saran fix doang.</pre>
     <p>Sekali kebikin, kamu bisa route kerjaan ke dia: <em>"suruh reviewer cek branch ini"</em>. Punya beberapa = kamu punya tim: ada yang riset, ada yang nulis, ada yang QA. Persis kayak ngebangun departemen, tapi isinya agent.</p>
-    <p class="takeaway">Frontmatter (name/description/tools/model) itu "job desc"-nya. Description yang jelas bikin Claude tau kapan manggil agent yang mana.</p>
+    <p class="takeaway">Frontmatter = "job desc" agent. <strong>name</strong> &amp; <strong>description</strong> wajib; <strong>tools</strong> &amp; <strong>model</strong> opsional (masih ada field opsional lain). Description yang jelas bikin Claude tau kapan manggil agent yang mana.</p>
   </div>
 
   <div class="lesson">

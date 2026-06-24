@@ -12,7 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<script>(function(){try{var t=localStorage.getItem('aidia-theme');if(!t)t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <div class="grad-top"></div>
@@ -23,7 +24,10 @@
     <a class="brand" href="index.html">
       <span class="wm">aidia<i>.</i> <b class="acad">Academy</b></span>
     </a>
-    <a class="head-link" href="index.html">← all courses</a>
+    <div class="head-right">
+      <a class="head-link" href="index.html">← all courses</a>
+      <button class="theme-btn" id="themeToggle" type="button" aria-label="Ganti tema terang/gelap"><span class="t-sun">☀</span><span class="t-moon">☾</span></button>
+    </div>
   </div>
 </header>
 
@@ -104,7 +108,7 @@
         <span class="node cy">Cek<small>hasil</small></span>
       </div>
       <p class="loopback">↻ ulangi otomatis sampai tujuan tercapai</p>
-      <p class="dnote">Chatbot: Tanya → Jawab → <b style="color:#8b90a6">berhenti</b>. Cuma teks, nggak nyentuh apa-apa.</p>
+      <p class="dnote">Chatbot: Tanya → Jawab → <b style="color:var(--muted)">berhenti</b>. Cuma teks, nggak nyentuh apa-apa.</p>
     </div>
     <p class="takeaway">Mindset shift: kamu bukan ngobrol sama AI, kamu lagi ngasih kerjaan ke sesuatu yang bisa nyentuh file beneran.</p>
   </div>
@@ -274,7 +278,7 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
           <span class="node">Playwright<small>browser</small></span>
         </div>
       </div>
-      <p class="dnote">Tanpa MCP: cuma bisa <b style="color:#8b90a6">ngomongin</b> sistem. Dengan MCP: bisa <b style="color:#22d3ee">beraksi</b> di sistem.</p>
+      <p class="dnote">Tanpa MCP: cuma bisa <b style="color:var(--muted)">ngomongin</b> sistem. Dengan MCP: bisa <b style="color:var(--cyan)">beraksi</b> di sistem.</p>
     </div>
     <p class="takeaway">Tiap MCP yang dicolok = satu kerjaan manual yang sekarang bisa dilempar.</p>
   </div>
@@ -565,6 +569,19 @@ Jangan ngedit kode — lapor temuan + saran fix doang.</pre>
     LEAD = Learn · Establish · Attach · Direct. Materi disusun dari praktek harian ngejalanin Claude Code, bukan teori. Detail command bisa beda antar versi — cek dokumentasi resmi buat sintaks terbaru.</p>
   </div>
 </footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('themeToggle');
+  if(!btn)return;
+  btn.addEventListener('click',function(){
+    var light=document.documentElement.getAttribute('data-theme')==='light';
+    if(light){document.documentElement.removeAttribute('data-theme');}
+    else{document.documentElement.setAttribute('data-theme','light');}
+    try{localStorage.setItem('aidia-theme',light?'dark':'light');}catch(e){}
+  });
+})();
+</script>
 
 </body>
 </html>

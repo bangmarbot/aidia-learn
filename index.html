@@ -12,7 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<script>(function(){try{var t=localStorage.getItem('aidia-theme');if(!t)t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <div class="grad-top"></div>
@@ -22,7 +23,10 @@
     <a class="brand" href="index.html">
       <span class="wm">aidia<i>.</i> <b class="acad">Academy</b></span>
     </a>
-    <a class="head-link" href="https://aidia.uk">aidia.uk ↗</a>
+    <div class="head-right">
+      <a class="head-link" href="https://aidia.uk">aidia.uk ↗</a>
+      <button class="theme-btn" id="themeToggle" type="button" aria-label="Ganti tema terang/gelap"><span class="t-sun">☀</span><span class="t-moon">☾</span></button>
+    </div>
   </div>
 </header>
 
@@ -84,6 +88,19 @@
     Materi disusun dari praktek nyata ngejalanin Claude Code tiap hari.</p>
   </div>
 </footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('themeToggle');
+  if(!btn)return;
+  btn.addEventListener('click',function(){
+    var light=document.documentElement.getAttribute('data-theme')==='light';
+    if(light){document.documentElement.removeAttribute('data-theme');}
+    else{document.documentElement.setAttribute('data-theme','light');}
+    try{localStorage.setItem('aidia-theme',light?'dark':'light');}catch(e){}
+  });
+})();
+</script>
 
 </body>
 </html>

@@ -434,3 +434,44 @@ body.anim .diagram.in .loopback{animation:none}
   .reading-progress{display:none}
   body.anim .grad-top{opacity:1}
 }
+
+/* ============================================================
+   THEME — light mode. Default = dark (:root tokens above).
+   <html data-theme="light"> flips the token values.
+   ============================================================ */
+:root{color-scheme:dark}
+[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f6f7fb; --bg-2:#eceff5; --card:#ffffff; --card-2:#f2f5fa;
+  --text:#141925; --text-soft:#3a4254; --muted:#697084;
+  --line:#e3e7ef; --line-strong:#cdd4e1;
+  --blue:#2563eb; --cyan:#0e9bb8; --violet:#7c3aed;
+  --ok:#059669; --ok-bg:rgba(5,150,105,.10); --ok-line:rgba(5,150,105,.30);
+  --warn:#b45309; --warn-bg:rgba(180,83,9,.10); --warn-line:rgba(180,83,9,.28);
+  --grad:linear-gradient(90deg,#2563eb,#0e9bb8,#7c3aed);
+  --shadow:0 1px 2px rgba(20,25,40,.06), 0 12px 36px rgba(20,25,40,.10);
+}
+/* sticky surfaces (were hardcoded dark) */
+[data-theme="light"] .site-head{background:rgba(246,247,251,.85)}
+[data-theme="light"] .mod-nav{background:rgba(246,247,251,.9)}
+/* per-module accents → readable-on-light variants */
+[data-theme="light"] #L,[data-theme="light"] .ladder a:nth-child(1){--mc:#2563eb}
+[data-theme="light"] #E,[data-theme="light"] .ladder a:nth-child(2){--mc:#0e9bb8}
+[data-theme="light"] #A,[data-theme="light"] .ladder a:nth-child(3){--mc:#7c3aed}
+[data-theme="light"] #D,[data-theme="light"] .ladder a:nth-child(4){--mc:#059669}
+/* code block = always-dark terminal island; re-pin syntax bright in light */
+[data-theme="light"] pre{color:#c8cdda;border-color:#1c2334}
+[data-theme="light"] pre .c{color:#8b90a6}
+[data-theme="light"] pre .k{color:#22d3ee}
+[data-theme="light"] pre .s{color:#34d399}
+[data-theme="light"] pre .v{color:#9a7dff}
+[data-theme="light"] .cta-band .btn{color:#fff}
+
+/* theme toggle button */
+.head-right{display:flex;align-items:center;gap:10px}
+.theme-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--bg-2);color:var(--text-soft);cursor:pointer;font-size:15px;line-height:1;padding:0;transition:border-color .15s,color .15s,background .15s}
+.theme-btn:hover{color:var(--text);border-color:var(--line-strong)}
+.theme-btn .t-moon{display:none}
+[data-theme="light"] .theme-btn .t-sun{display:none}
+[data-theme="light"] .theme-btn .t-moon{display:inline}
+body{transition:background-color .25s ease,color .25s ease}

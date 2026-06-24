@@ -495,3 +495,21 @@ body{transition:background-color .25s ease,color .25s ease}
    ============================================================ */
 .crumb{padding-left:24px;padding-right:24px}
 .art-head{padding-left:24px;padding-right:24px}
+
+/* ============================================================
+   v7 — bilingual ID | EN. Default = ID. <html data-lang> flips.
+   Dual content at block level: [lang="id"] / [lang="en"].
+   The shown language keeps its natural display; other hidden.
+   ============================================================ */
+[data-lang="id"] [lang="en"]{display:none}
+[data-lang="en"] [lang="id"]{display:none}
+/* language pill (reuses .langtog base from lab stylesheet) */
+.langtog b[data-l]{cursor:pointer}
+[data-lang="id"] .langtog b[data-l="id"],
+[data-lang="en"] .langtog b[data-l="en"]{background:var(--cyan);color:#060810}
+@media(max-width:560px){
+  .head-link{display:none}
+  .head-right{gap:8px}
+  .langtog{font-size:11px}
+  .langtog b{padding:3px 9px}
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script>(function(){try{var t=localStorage.getItem('aidia-theme');if(!t)t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
-<link rel="stylesheet" href="style.css?v=6">
+<script>(function(){try{var t=localStorage.getItem('aidia-theme');if(!t)t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';if(t==='light')document.documentElement.setAttribute('data-theme','light');var l=localStorage.getItem('aidia-lang')||'id';document.documentElement.setAttribute('data-lang',l);}catch(e){}})();</script>
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 <div class="grad-top"></div>
@@ -25,7 +25,8 @@
     </a>
     <div class="head-right">
       <a class="head-link" href="https://aidia.uk">aidia.uk ↗</a>
-      <button class="theme-btn" id="themeToggle" type="button" aria-label="Ganti tema terang/gelap"><span class="t-sun">☀</span><span class="t-moon">☾</span></button>
+      <div class="langtog" id="langTog"><b data-l="id">ID</b><b data-l="en">EN</b></div>
+      <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle light/dark theme"><span class="t-sun">☀</span><span class="t-moon">☾</span></button>
     </div>
   </div>
 </header>
@@ -34,12 +35,17 @@
   <div class="hero">
     <div class="wrap">
       <p class="eyebrow">Aidia Academy</p>
-      <h1>Learn to run AI like a team — not a chatbot.</h1>
-      <p class="lead">Most people stay stuck nyuruh AI satu-satu kayak asisten. The leap is learning to <em>direct</em> it — kasih aturan, sambungin ke sistem kamu, lalu pimpin sekawanan agent yang kerja sendiri. Aidia Academy ngajarin lompatan itu, hands-on, dari pengalaman ngerjain beneran.</p>
+      <h1 lang="id">Jalanin AI kayak satu tim — bukan chatbot.</h1>
+      <h1 lang="en">Learn to run AI like a team — not a chatbot.</h1>
+      <p class="lead" lang="id">Kebanyakan orang nyangkut nyuruh AI satu-satu kayak asisten. Lompatannya: belajar <em>mimpin</em> — kasih aturan, sambungin ke sistem kamu, lalu pimpin sekawanan agent yang kerja sendiri. Aidia Academy ngajarin lompatan itu, hands-on, dari pengalaman ngerjain beneran.</p>
+      <p class="lead" lang="en">Most people stay stuck telling AI what to do one task at a time, like an assistant. The leap is learning to <em>direct</em> it — set the rules, connect it to your systems, then lead a squad of agents that work on their own. Aidia Academy teaches that leap, hands-on, from real work.</p>
       <div class="principles">
-        <span>🧭 Framework, bukan tutorial acak</span>
-        <span>⌨️ Praktek nyata, bukan teori</span>
-        <span>🤖 Dari user → orchestrator</span>
+        <span lang="id">🧭 Framework, bukan tutorial acak</span>
+        <span lang="en">🧭 A framework, not random tutorials</span>
+        <span lang="id">⌨️ Praktek nyata, bukan teori</span>
+        <span lang="en">⌨️ Real practice, not theory</span>
+        <span lang="id">🤖 Dari user → orchestrator</span>
+        <span lang="en">🤖 From user → orchestrator</span>
       </div>
     </div>
   </div>
@@ -52,27 +58,31 @@
       <a class="card live subj" href="claude-code-lead.html" style="color:inherit">
         <span class="badge verified"><span class="dot"></span>Course 01 · Live</span>
         <h3>Claude Code Mastery — with LEAD</h3>
-        <p class="tag">Kuasai Claude Code dari nol sampai mahir, disusun lewat 4 tahap LEAD: dari nulis prompt yang tajam sampai ngatur sekawanan subagent yang kerja paralel.</p>
+        <p class="tag" lang="id">Kuasai Claude Code dari nol sampai mahir, disusun lewat 4 tahap LEAD: dari nulis prompt yang tajam sampai ngatur sekawanan subagent yang kerja paralel.</p>
+        <p class="tag" lang="en">Master Claude Code from zero, structured around the 4 stages of LEAD: from writing sharp prompts to orchestrating a squad of subagents working in parallel.</p>
         <div class="lead-chips">
           <i class="on">L</i><i class="on">E</i><i class="on">A</i><i class="on">D</i>
         </div>
         <div class="mini">
-          <div><b>4</b><small>modul · LEAD</small></div>
-          <div><b>18</b><small>lesson teknis</small></div>
-          <div><b>prompt→squad</b><small>full path</small></div>
+          <div><b>4</b><small lang="id">modul · LEAD</small><small lang="en">modules · LEAD</small></div>
+          <div><b>18</b><small lang="id">lesson teknis</small><small lang="en">technical lessons</small></div>
+          <div><b>prompt→squad</b><small lang="id">full path</small><small lang="en">full path</small></div>
         </div>
-        <span class="go">Mulai course →</span>
+        <span class="go" lang="id">Mulai course →</span>
+        <span class="go" lang="en">Start the course →</span>
       </a>
 
       <!-- COURSE 02: coming -->
       <div class="card ghost subj">
         <span class="badge konsep" style="opacity:.6"><span class="dot"></span>Course 02 · Coming</span>
         <h3>AI Agent for Non-Tech</h3>
-        <p class="gh">Buat yang bukan dari background teknis: cara naro AI agent ke kerjaan sehari-hari tanpa harus jago ngoding. Lagi disusun.</p>
+        <p class="gh" lang="id">Buat yang bukan dari background teknis: cara naro AI agent ke kerjaan sehari-hari tanpa harus jago ngoding. Lagi disusun.</p>
+        <p class="gh" lang="en">For non-technical folks: how to put AI agents to work in your day-to-day without being a coder. In the works.</p>
       </div>
 
       <div class="card ghost">
-        <span class="gh">+ subject berikutnya nyusul template yang sama</span>
+        <span class="gh" lang="id">+ subject berikutnya nyusul template yang sama</span>
+        <span class="gh" lang="en">+ next subjects follow the same template</span>
       </div>
 
     </div>
@@ -85,19 +95,25 @@
       <span class="wm">aidia<i>.</i></span>
     </div>
     <p><strong>Aidia Academy</strong> — courses on putting AI agents to real work, by Muslih · <a href="https://aidia.uk">aidia.uk</a> · <a href="https://lab.aidia.uk">lab ↗</a><br>
-    Materi disusun dari praktek nyata ngejalanin Claude Code tiap hari.</p>
+    <span lang="id">Materi disusun dari praktek nyata ngejalanin Claude Code tiap hari.</span><span lang="en">Built from real, daily practice running Claude Code.</span></p>
   </div>
 </footer>
 
 <script>
 (function(){
-  var btn=document.getElementById('themeToggle');
-  if(!btn)return;
-  btn.addEventListener('click',function(){
-    var light=document.documentElement.getAttribute('data-theme')==='light';
-    if(light){document.documentElement.removeAttribute('data-theme');}
-    else{document.documentElement.setAttribute('data-theme','light');}
+  var html=document.documentElement;
+  var tb=document.getElementById('themeToggle');
+  if(tb)tb.addEventListener('click',function(){
+    var light=html.getAttribute('data-theme')==='light';
+    if(light){html.removeAttribute('data-theme');}else{html.setAttribute('data-theme','light');}
     try{localStorage.setItem('aidia-theme',light?'dark':'light');}catch(e){}
+  });
+  var lt=document.getElementById('langTog');
+  if(lt)lt.addEventListener('click',function(e){
+    var b=e.target.closest('b[data-l]');if(!b)return;
+    var l=b.getAttribute('data-l');
+    html.setAttribute('data-lang',l);
+    try{localStorage.setItem('aidia-lang',l);}catch(e){}
   });
 })();
 </script>

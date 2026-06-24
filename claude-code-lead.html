@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <div class="grad-top"></div>
@@ -49,6 +49,7 @@
       <a href="#A"><span class="step-n">03</span><span class="L">A</span><b>Attach</b><small>Sambung ke sistem — MCP, git, hooks</small></a>
       <a href="#D"><span class="step-n">04</span><span class="L">D</span><b>Direct</b><small>Mimpin tanpa ngerjain — loop, subagents, orchestrate</small></a>
     </div>
+    <p class="ladder-cap"><b>User</b><span class="ln2"></span>naik tahap demi tahap<span class="ln2"></span><b>Orchestrator</b></p>
   </div>
 </main>
 
@@ -82,7 +83,18 @@
     <h3>Apa itu Claude Code — agentic loop vs chatbot</h3>
     <p>Chatbot itu cuma <strong>ngomong</strong>: lo nanya, dia jawab teks, selesai. Claude Code itu <strong>kerja</strong>. Dia jalan di terminal, di dalam folder project lo, dan punya tangan: bisa baca file, ngedit file, jalanin command, nyari ke seluruh repo, sampai commit ke git.</p>
     <p>Kuncinya satu kata: <em>agentic loop</em>. Lo kasih satu tujuan, dia muter sendiri — <strong>baca konteks → mikir → ambil aksi (pakai tool) → cek hasil → lanjut</strong> — sampai tujuannya kelar. Bukan satu balasan, tapi serangkaian langkah nyata.</p>
-    <p class="takeaway">Mindset shift: lo bukan ngobrol sama AI, lo lagi ngasih kerjaan ke sesuatu yang bisa nyentuh file lo beneran.</p>
+    <div class="diagram">
+      <p class="dlbl">Agentic loop — muter sampai kelar, bukan sekali jawab</p>
+      <div class="looprow">
+        <span class="node cy">Baca<small>konteks</small></span><span class="arrowx">→</span>
+        <span class="node cy">Mikir</span><span class="arrowx">→</span>
+        <span class="node cy">Aksi<small>pakai tool</small></span><span class="arrowx">→</span>
+        <span class="node cy">Cek<small>hasil</small></span>
+      </div>
+      <p class="loopback">↻ ulangi otomatis sampai tujuan tercapai</p>
+      <p class="dnote">Chatbot: Tanya → Jawab → <b style="color:#8b90a6">berhenti</b>. Cuma teks, nggak nyentuh apa-apa.</p>
+    </div>
+    <p class="takeaway">Mindset shift: kamu bukan ngobrol sama AI, kamu lagi ngasih kerjaan ke sesuatu yang bisa nyentuh file beneran.</p>
   </div>
 
   <div class="lesson">
@@ -236,7 +248,22 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
 <span class="k">claude mcp add</span> github
 <span class="k">claude mcp list</span>      <span class="c"># liat yang udah konek</span></pre>
     <p>Kenapa ini gede: tanpa MCP, AI cuma bisa ngomongin sistem lo. Dengan MCP, dia bisa <em>beraksi</em> di sistem lo — itu beda antara "kasih saran" dan "ngerjain".</p>
-    <p class="takeaway">Tiap MCP yang lo colok = satu kerjaan manual yang sekarang bisa lo lempar.</p>
+    <div class="diagram">
+      <p class="dlbl">MCP — satu colokan = satu set "tangan" baru</p>
+      <div class="hub">
+        <span class="node grad">Claude Code</span>
+        <div class="connector"></div>
+        <div class="spokes">
+          <span class="node">GitHub<small>issue · PR</small></span>
+          <span class="node">Database<small>query · migrasi</small></span>
+          <span class="node">Notion<small>docs</small></span>
+          <span class="node">Figma<small>design token</small></span>
+          <span class="node">Playwright<small>browser</small></span>
+        </div>
+      </div>
+      <p class="dnote">Tanpa MCP: cuma bisa <b style="color:#8b90a6">ngomongin</b> sistem. Dengan MCP: bisa <b style="color:#22d3ee">beraksi</b> di sistem.</p>
+    </div>
+    <p class="takeaway">Tiap MCP yang dicolok = satu kerjaan manual yang sekarang bisa dilempar.</p>
   </div>
 
   <div class="lesson">
@@ -331,10 +358,21 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
     <pre><span class="c"># crontab: tiap hari jam 08:05, sync transaksi</span>
 <span class="v">5 1 * * *</span> /usr/bin/python3 ~/sync.py >> ~/sync.log 2>&1</pre>
     <p>Beda peran, jangan ketuker:</p>
-    <ul>
-      <li><b>Cron</b> = otot. Jalanin <em>script</em> yang sama, buta, tepat waktu. Cocok buat tugas mekanis fixed.</li>
-      <li><b>Loop</b> = otot + otak. Jalanin <em>agent</em> yang bisa nalar &amp; mutusin tiap putaran. Cocok buat yang butuh judgment.</li>
-    </ul>
+    <div class="diagram">
+      <p class="dlbl">Cron vs Loop — jangan ketuker</p>
+      <div class="twoup">
+        <div class="col">
+          <span class="mt">Cron · otot</span>
+          <h5>Script buta</h5>
+          <p>Jalanin hal yang sama, tepat waktu, tanpa mikir. Buat tugas mekanis fixed. Hidup walau laptop ketutup.</p>
+        </div>
+        <div class="col accent">
+          <span class="mt">Loop · otot + otak</span>
+          <h5>Agent yang nalar</h5>
+          <p>Mutusin tiap putaran (ambil apa, triage ke mana). Buat yang butuh judgment. Hidup selama sesi.</p>
+        </div>
+      </div>
+    </div>
     <p class="takeaway">Pola matang dulu di loop (manual, fleksibel) → baru turunin ke cron pas udah jadi rutinitas pasti.</p>
   </div>
 
@@ -349,7 +387,22 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
     </ul>
     <div class="tryit">
       <h4>Pola</h4>
-      <p><em>"Sebar 4 subagent buat nyari bug — masing-masing pegang satu modul — terus kumpulin temuannya jadi satu laporan."</em> Lo cuma baca laporan akhir; kerja kasarnya keurus paralel.</p>
+      <p><em>"Sebar 4 subagent buat nyari bug — masing-masing pegang satu modul — terus kumpulin temuannya jadi satu laporan."</em> Kamu cuma baca laporan akhir; kerja kasarnya keurus paralel.</p>
+    </div>
+    <div class="diagram">
+      <p class="dlbl">Sebar paralel → gabung jadi satu hasil</p>
+      <div class="fan">
+        <span class="node grad">Orchestrator</span>
+        <div class="forklbl">▼ sebar (paralel)</div>
+        <div class="row">
+          <span class="node cy">Riset</span>
+          <span class="node cy">Tulis</span>
+          <span class="node cy">Review</span>
+          <span class="node cy">QA</span>
+        </div>
+        <div class="forklbl">▼ kumpulin</div>
+        <span class="node">Laporan akhir</span>
+      </div>
     </div>
   </div>
 
@@ -378,6 +431,21 @@ Jangan ngedit kode — lapor temuan + saran fix doang.</pre>
       <li><b>Parallel (fan-out).</b> Banyak agent jalan bareng, nggak saling nunggu. Cepet, cocok buat kerjaan independen — sweep, riset multi-sumber, review multi-dimensi.</li>
       <li><b>Pipeline.</b> Output agent satu jadi input agent berikutnya. Cocok buat alur bertahap — temukan → verifikasi → rangkum.</li>
     </ul>
+    <div class="diagram">
+      <p class="dlbl">Dua pola orchestrate</p>
+      <div class="twoup">
+        <div class="col">
+          <span class="mt">Parallel · fan-out</span>
+          <div class="miniflow"><span class="node cy">A</span><span class="node cy">B</span><span class="node cy">C</span></div>
+          <p>Jalan bareng dari satu sumber, nggak saling nunggu. Cepet — buat kerjaan independen.</p>
+        </div>
+        <div class="col accent">
+          <span class="mt">Pipeline</span>
+          <div class="miniflow"><span class="node cy">Temukan</span><span class="arrowx">→</span><span class="node cy">Verifikasi</span><span class="arrowx">→</span><span class="node cy">Rangkum</span></div>
+          <p>Output satu jadi input berikutnya. Buat alur bertahap yang saling tergantung.</p>
+        </div>
+      </div>
+    </div>
     <div class="tryit">
       <h4>Aturan main orchestrator</h4>
       <p>Fan-out pas tugas <em>independen</em>. Pipeline pas tiap tahap <em>butuh</em> hasil tahap sebelumnya. Dan selalu ada satu langkah <strong>verifikasi</strong> di ujung — jangan percaya gitu aja hasil yang belum dicek.</p>

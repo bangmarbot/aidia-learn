@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code Mastery with LEAD — Aidia Academy</title>
+<meta name="description" content="Kuasai Claude Code lewat framework LEAD: Learn (prompting & plan mode), Establish (CLAUDE.md & memory), Attach (MCP, git, hooks), Direct (loop, subagents, orchestration). 4 modul, 18 lesson teknis, dari prompt sampai squad.">
+<meta property="og:title" content="Claude Code Mastery with LEAD">
+<meta property="og:description" content="From prompting to managing a squad of subagents — structured by LEAD. Aidia Academy, Course 01.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23060810'/%3E%3Ctext x='6' y='23' font-family='monospace' font-size='18' font-weight='700' fill='%23e8eaf2'%3Ea%3C/text%3E%3Ccircle cx='22' cy='20' r='2.6' fill='%238b6bff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<div class="grad-top"></div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="wm">aidia<i>.</i> <b class="acad">Academy</b></span>
+    </a>
+    <a class="head-link" href="index.html">← all courses</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap crumb"><a href="index.html">Academy</a> / Course 01 / Claude Code Mastery</div>
+
+  <div class="art-head wrap">
+    <p class="eyebrow">Course 01 · Framework: LEAD</p>
+    <h1>Claude Code Mastery — with LEAD</h1>
+    <p class="tagline">Berhenti jadi user yang nyuruh-nyuruh. Belajar <em>mimpin</em> Claude Code: dari nulis prompt yang bener, sampai ngatur sekawanan agent yang kerja sendiri.</p>
+    <div class="meta">
+      <span><b>4</b> modul</span>
+      <span><b>18</b> lesson</span>
+      <span><b>Path:</b> prompting → managing subagents</span>
+      <span><b>Bahasa:</b> ID + EN (natural)</span>
+    </div>
+  </div>
+
+  <!-- LEAD ladder -->
+  <div class="wrap">
+    <div class="ladder">
+      <a href="#L"><span class="step-n">01</span><span class="L">L</span><b>Learn</b><small>Drive the tool — prompting, plan mode, run aman</small></a>
+      <a href="#E"><span class="step-n">02</span><span class="L">E</span><b>Establish</b><small>Kasih aturan & ingatan — CLAUDE.md, memory, skills</small></a>
+      <a href="#A"><span class="step-n">03</span><span class="L">A</span><b>Attach</b><small>Sambung ke sistem — MCP, git, hooks</small></a>
+      <a href="#D"><span class="step-n">04</span><span class="L">D</span><b>Direct</b><small>Mimpin tanpa ngerjain — loop, subagents, orchestrate</small></a>
+    </div>
+  </div>
+</main>
+
+<!-- sticky module nav -->
+<nav class="mod-nav">
+  <div class="wrap">
+    <a href="#L"><b>L</b> · Learn</a>
+    <a href="#E"><b>E</b> · Establish</a>
+    <a href="#A"><b>A</b> · Attach</a>
+    <a href="#D"><b>D</b> · Direct</a>
+    <a href="#wrap-up">Wrap-up</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============================================================ L ============================================================ -->
+<section class="module" id="L">
+  <div class="mod-head">
+    <div class="big">L</div>
+    <div class="mt">
+      <p class="kq">Tahap 1 · Drive the tool</p>
+      <h2>Learn</h2>
+      <p>Sebelum bisa mimpin, lo harus bisa nyetir. Modul ini bikin lo nyaman ngomong sama Claude Code: apa bedanya sama chat biasa, gimana nyetir biar dia paham, dan gimana dia gerak tanpa bikin lo deg-degan.</p>
+      <p class="lcount">5 lesson</p>
+    </div>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">L1</p>
+    <h3>Apa itu Claude Code — agentic loop vs chatbot</h3>
+    <p>Chatbot itu cuma <strong>ngomong</strong>: lo nanya, dia jawab teks, selesai. Claude Code itu <strong>kerja</strong>. Dia jalan di terminal, di dalam folder project lo, dan punya tangan: bisa baca file, ngedit file, jalanin command, nyari ke seluruh repo, sampai commit ke git.</p>
+    <p>Kuncinya satu kata: <em>agentic loop</em>. Lo kasih satu tujuan, dia muter sendiri — <strong>baca konteks → mikir → ambil aksi (pakai tool) → cek hasil → lanjut</strong> — sampai tujuannya kelar. Bukan satu balasan, tapi serangkaian langkah nyata.</p>
+    <p class="takeaway">Mindset shift: lo bukan ngobrol sama AI, lo lagi ngasih kerjaan ke sesuatu yang bisa nyentuh file lo beneran.</p>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">L2</p>
+    <h3>Setup &amp; first run</h3>
+    <p>Claude Code = CLI. Lo install sekali, terus jalanin dari dalam folder project. Begitu masuk, dia langsung "nyadar" konteks repo lo.</p>
+    <pre><span class="c"># install (sekali aja)</span>
+<span class="k">npm install</span> -g @anthropic-ai/claude-code
+
+<span class="c"># masuk ke project lo, lalu start</span>
+<span class="k">cd</span> ~/project-gw
+<span class="k">claude</span></pre>
+    <p>Sekarang lo di dalam sesi interaktif. Ketik tujuan lo pakai bahasa biasa. Dia bakal nanya izin pas mau ngedit/ngejalanin sesuatu yang berdampak (lebih lanjut di L5).</p>
+    <div class="tryit">
+      <h4>Coba</h4>
+      <p>Buka project lo, jalanin <code class="inl">claude</code>, terus ketik: <em>"Jelasin struktur project ini ke gw, file mana yang jadi entry point."</em> Perhatiin: dia baca file dulu sebelum jawab — itu agentic loop yang lagi jalan.</p>
+    </div>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">L3</p>
+    <h3>Prompting yang nendang</h3>
+    <p>Hasil jelek 90% gara-gara prompt ngambang, bukan AI-nya bodoh. Empat hal yang bikin prompt lo nendang:</p>
+    <ul>
+      <li><b>Spesifik soal hasil.</b> Bukan "rapihin kode ini", tapi "pecah fungsi ini jadi 3, kasih nama yang jelas, jangan ubah behavior".</li>
+      <li><b>Kasih konteks &amp; file.</b> Tunjuk file-nya langsung: <em>"di <code class="inl">src/auth.ts</code>, ..."</em>. Dia kerja jauh lebih akurat kalau tau harus liat ke mana.</li>
+      <li><b>Kasih peran.</b> "Lo reviewer keamanan" beda hasilnya sama "lo junior dev". Peran nyetel cara dia mikir.</li>
+      <li><b>Sebut kondisi selesai.</b> "Beres kalau <code class="inl">npm test</code> hijau" — dia jadi tau kapan harus berhenti, dan bakal ngecek sendiri.</li>
+    </ul>
+    <p class="takeaway">Prompt yang bagus = brief yang bagus. Bayangin lo lagi nge-brief orang, bukan ngetik ke Google.</p>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">L4</p>
+    <h3>Plan mode — mikir dulu sebelum gerak</h3>
+    <p>Buat perubahan gede, lo nggak mau dia langsung ngedit 12 file. <strong>Plan mode</strong> bikin Claude Code nyusun rencana dulu — file apa yang disentuh, urutan langkah, trade-off — dan <em>nungguin approval lo</em> sebelum nyentuh apa pun.</p>
+    <p>Alurnya: lo masuk plan mode, kasih tujuan, dia balikin rencana, lo baca → approve / revisi → baru dia eksekusi. Ini ngubah "semoga dia bener" jadi "gw udah liat rencananya, gas".</p>
+    <div class="tryit">
+      <h4>Kapan dipakai</h4>
+      <p>Refactor lintas-file, fitur baru, migrasi, atau apa pun yang lo sendiri belum yakin pendekatannya. Buat edit kecil/jelas, skip — plan mode malah mperlambat.</p>
+    </div>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">L5</p>
+    <h3>Baca, edit &amp; run dengan aman</h3>
+    <p>Claude Code default-nya hati-hati: dia <strong>minta izin</strong> sebelum ngedit file atau jalanin command yang berdampak. Lo yang pegang rem. Tiga hal yang perlu lo paham:</p>
+    <ul>
+      <li><b>Permission prompt.</b> Tiap aksi berisiko (hapus, overwrite, command asing) bakal munta konfirmasi. Baca dulu, baru iya.</li>
+      <li><b>Allowlist.</b> Command yang sering &amp; aman (kayak <code class="inl">npm test</code>, <code class="inl">git status</code>) bisa lo izinin permanen biar nggak ditanya terus.</li>
+      <li><b>Git = jaring pengaman.</b> Kerja di branch, commit sering. Salah arah tinggal balik. Ini kebiasaan paling murah yang nyelametin lo.</li>
+    </ul>
+    <p class="takeaway">Aman itu bukan soal AI-nya dipercaya 100% — tapi soal lo punya undo. Branch + commit = undo.</p>
+  </div>
+</section>
+
+<!-- ============================================================ E ============================================================ -->
+<section class="module" id="E">
+  <div class="mod-head">
+    <div class="big">E</div>
+    <div class="mt">
+      <p class="kq">Tahap 2 · Kasih aturan &amp; ingatan</p>
+      <h2>Establish</h2>
+      <p>Di tahap L lo ngulang-ngulang konteks tiap sesi. Capek. Tahap E bikin Claude Code <em>inget</em> — aturan main, gaya kerja, dan perintah favorit lo jadi permanen, nggak usah diketik ulang.</p>
+      <p class="lcount">4 lesson</p>
+    </div>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">E1</p>
+    <h3>CLAUDE.md — aturan yang selalu dipatuhi</h3>
+    <p><code class="inl">CLAUDE.md</code> itu file di root project lo yang <strong>otomatis kebaca tiap sesi</strong>. Anggap kayak onboarding doc buat anggota tim baru — isinya hal yang lo nggak mau jelasin berulang-ulang.</p>
+    <p class="fname">CLAUDE.md</p>
+    <pre><span class="c"># Project: Toko Online API</span>
+
+<span class="c">## Konvensi</span>
+- Pakai TypeScript strict. Jangan ada `any`.
+- Test pakai Vitest. Tiap fitur baru wajib ada test.
+
+<span class="c">## Command penting</span>
+- Build: `npm run build`
+- Test: `npm test`
+
+<span class="c">## Jangan</span>
+- Jangan commit ke `main` langsung. Selalu branch.
+- Jangan ubah file di `legacy/` tanpa nanya dulu.</pre>
+    <p>Cara cepet bikin: jalanin <code class="inl">/init</code> di sesi — Claude Code bakal nyusun draf CLAUDE.md dari isi repo lo, tinggal lo rapihin.</p>
+    <p class="takeaway">Setiap kali lo ngoreksi hal yang sama dua kali, itu sinyal: tulis di CLAUDE.md, biar nggak ada koreksi ketiga.</p>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">E2</p>
+    <h3>Memory &amp; continuity antar-sesi</h3>
+    <p>CLAUDE.md itu aturan project. <strong>Memory</strong> itu hal yang lo mau Claude inget lintas waktu — keputusan, preferensi, status kerjaan yang lagi jalan. Bedanya: CLAUDE.md lo tulis tangan; memory bisa lo suruh dia simpen sendiri.</p>
+    <ul>
+      <li><b>Simpan keputusan, bukan kode.</b> "Kita pindah dari REST ke tRPC karena X" — itu konteks yang nggak keliatan dari git history.</li>
+      <li><b>Tulis tanggal absolut.</b> "deadline 13 Juli 2026", bukan "minggu depan" — biar masih kebaca sesi depan.</li>
+      <li><b>Update, jangan numpuk.</b> Kalau ada file memory yang udah usang, betulin — jangan biarin dia nyimpen dua versi.</li>
+    </ul>
+    <div class="tryit">
+      <h4>Coba</h4>
+      <p>Di akhir sesi, ketik: <em>"Inget ya: kita mutusin pakai Postgres, bukan Mongo, alasannya butuh relasi kuat."</em> Sesi berikutnya, tanya balik — dia masih tau.</p>
+    </div>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">E3</p>
+    <h3>Context management — jaga tetap lean</h3>
+    <p>Claude Code punya "ruang ingat" terbatas per sesi (context window). Kalau lo jejelin semua, dia jadi lemot &amp; gampang ilang fokus. Aturan main:</p>
+    <ul>
+      <li><b>Tunjuk file, jangan paste.</b> Bilang "liat <code class="inl">src/api.ts</code>", jangan tempel 800 baris ke chat. Dia bisa baca sendiri.</li>
+      <li><b>Mulai bersih buat tugas baru.</b> Selesai satu kerjaan gede, <code class="inl">/clear</code> sebelum mulai yang nggak nyambung — biar konteks lama nggak ngeganggu.</li>
+      <li><b>Satu sesi, satu fokus.</b> Jangan campur "benerin bug auth" sama "desain ulang landing" di sesi yang sama.</li>
+    </ul>
+    <p class="takeaway">Context window itu kayak meja kerja — makin berantakan, makin lambat. Bersihin tiap ganti tugas.</p>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">E4</p>
+    <h3>Skills &amp; slash commands</h3>
+    <p>Kalau ada alur kerja yang lo ulang terus — "review PR ini pakai checklist gw", "bikin draft changelog" — jadiin <strong>slash command</strong>. Sekali bikin, tinggal panggil <code class="inl">/nama</code> kapan aja.</p>
+    <p class="fname">.claude/commands/review.md</p>
+    <pre><span class="c"># Review checklist gw</span>
+Review perubahan di branch ini. Cek:
+1. Ada test buat tiap fungsi baru?
+2. Error handling-nya bener?
+3. Ada secret/key yang ke-commit?
+Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> per poin.</pre>
+    <p>Sekarang tinggal ketik <code class="inl">/review</code> — dia jalanin checklist itu tanpa lo ngetik ulang. Ini SOP lo, dikodifikasi.</p>
+    <p class="takeaway">Slash command = SOP yang bisa dieksekusi. Kerjaan berulang lo berhenti jadi ketikan, jadi satu kata.</p>
+  </div>
+</section>
+
+<!-- ============================================================ A ============================================================ -->
+<section class="module" id="A">
+  <div class="mod-head">
+    <div class="big">A</div>
+    <div class="mt">
+      <p class="kq">Tahap 3 · Sambung ke sistem nyata</p>
+      <h2>Attach</h2>
+      <p>Sejauh ini Claude Code cuma "lihat" folder lo. Tahap A nyolokin dia ke dunia luar — GitHub, database, Notion, Figma, browser — biar dia bisa narik &amp; ngubah data beneran, bukan cuma file lokal.</p>
+      <p class="lcount">4 lesson</p>
+    </div>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">A1</p>
+    <h3>MCP servers — apa &amp; kenapa</h3>
+    <p><strong>MCP (Model Context Protocol)</strong> itu colokan standar buat nyambungin Claude ke tool/data luar. Satu MCP server = satu set "tangan" baru. Pasang GitHub MCP → Claude bisa baca issue &amp; bikin PR. Pasang database MCP → dia bisa query data lo.</p>
+    <pre><span class="c"># nambah MCP server (contoh)</span>
+<span class="k">claude mcp add</span> github
+<span class="k">claude mcp list</span>      <span class="c"># liat yang udah konek</span></pre>
+    <p>Kenapa ini gede: tanpa MCP, AI cuma bisa ngomongin sistem lo. Dengan MCP, dia bisa <em>beraksi</em> di sistem lo — itu beda antara "kasih saran" dan "ngerjain".</p>
+    <p class="takeaway">Tiap MCP yang lo colok = satu kerjaan manual yang sekarang bisa lo lempar.</p>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">A2</p>
+    <h3>Integrasi yang sering kepake</h3>
+    <p>Lo nggak perlu semua. Pasang yang nyentuh kerjaan lo:</p>
+    <ul>
+      <li><b>GitHub</b> — baca issue, review &amp; bikin PR, cari kode lintas repo.</li>
+      <li><b>Database (Postgres/Supabase)</b> — query, cek skema, jalanin migrasi.</li>
+      <li><b>Notion</b> — baca/tulis dokumen &amp; database tim.</li>
+      <li><b>Playwright</b> — nyetir browser beneran: ngeklik, ngisi form, screenshot, verifikasi UI.</li>
+      <li><b>Figma</b> — narik design token / komponen langsung dari file desain.</li>
+    </ul>
+    <div class="tryit">
+      <h4>Pola yang ngebuka mata</h4>
+      <p>Gabungin dua: <em>"Ambil 5 issue teratas dari GitHub, terus drafin balasannya di Notion."</em> Satu kalimat, dua sistem, nol copy-paste. Itu kekuatan Attach.</p>
+    </div>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">A3</p>
+    <h3>Git workflow — branch, commit, PR</h3>
+    <p>Claude Code paling kuat pas dikasih alur git penuh lewat <code class="inl">gh</code> (GitHub CLI). Dia bisa bikin branch, commit dengan pesan yang rapi, push, sampai buka PR — semua diarahin sama lo.</p>
+    <pre><span class="c"># Claude bisa ngejalanin alur ini buat lo:</span>
+<span class="k">git</span> checkout -b <span class="v">fix/login-bug</span>
+<span class="c"># ...dia ngedit & test...</span>
+<span class="k">git</span> commit -m <span class="s">"fix: handle null session on login"</span>
+<span class="k">gh</span> pr create --fill</pre>
+    <ul>
+      <li><b>Branch dulu, selalu.</b> Apalagi kalau CLAUDE.md lo udah larang commit ke <code class="inl">main</code>.</li>
+      <li><b>Commit kecil &amp; sering.</b> Gampang di-review, gampang di-revert.</li>
+      <li><b>Biarin dia nulis PR body.</b> Dia inget semua yang diubah — ringkasannya biasanya lebih lengkap dari yang lo tulis manual.</li>
+    </ul>
+    <p class="takeaway">Git bukan cuma version control di sini — itu kontrak antara lo &amp; agent. Tiap commit = checkpoint yang lo setujui.</p>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">A4</p>
+    <h3>Hooks &amp; permissions — atur otomatis</h3>
+    <p>Dua tuas kontrol penting ada di <code class="inl">settings.json</code>:</p>
+    <ul>
+      <li><b>Permissions / allowlist.</b> Tentuin command apa yang boleh jalan tanpa nanya. Sekali set, sesi lo jadi mulus.</li>
+      <li><b>Hooks.</b> Otomatisin perilaku <em>di sekitar</em> aksi Claude. Contoh: tiap habis ngedit file, otomatis jalanin formatter. Atau sebelum commit, otomatis jalanin lint.</li>
+    </ul>
+    <p class="fname">.claude/settings.json (potongan)</p>
+    <pre>{
+  <span class="v">"hooks"</span>: {
+    <span class="v">"PostToolUse"</span>: [{
+      <span class="v">"matcher"</span>: <span class="s">"Edit"</span>,
+      <span class="v">"command"</span>: <span class="s">"npm run format"</span>
+    }]
+  }
+}</pre>
+    <p>Bedanya sama nyuruh manual: hook itu <strong>dijamin jalan</strong> tiap kondisi kepenuhin — bukan "semoga AI inget". Lo mindahin aturan dari harapan ke mesin.</p>
+    <p class="takeaway">Hook = kebiasaan yang dipasang ke sistem. Lo nggak perlu inget format kode — mesinnya yang inget.</p>
+  </div>
+</section>
+
+<!-- ============================================================ D ============================================================ -->
+<section class="module" id="D">
+  <div class="mod-head">
+    <div class="big">D</div>
+    <div class="mt">
+      <p class="kq">Tahap 4 · Mimpin tanpa ngerjain</p>
+      <h2>Direct</h2>
+      <p>Puncaknya. Di sini lo berhenti ngetik tiap langkah dan mulai <em>mengarahkan</em>: nyuruh AI jalan sendiri sesuai waktu (loop), dan ngebagi kerjaan ke banyak agent spesialis yang jalan paralel (subagents). Lo naik dari operator jadi konduktor.</p>
+      <p class="lcount">5 lesson</p>
+    </div>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">D1</p>
+    <h3>Loop mode — otonom lintas waktu</h3>
+    <p><strong>Loop</strong> bikin Claude Code ngejalanin satu tugas <em>berulang</em> — di interval tetap, atau self-paced (dia nentuin sendiri kapan layak ngecek lagi). Bedanya sama nyuruh sekali: loop jalan terus, ngambil keputusan tiap putaran.</p>
+    <pre><span class="c"># interval tetap</span>
+<span class="k">/loop</span> 30m cek inbox, triage file baru
+
+<span class="c"># self-paced (dia yang atur ritme)</span>
+<span class="k">/loop</span> pantau CI, lapor kalau merah</pre>
+    <ul>
+      <li><b>Watcher.</b> Jaga folder/inbox/endpoint; begitu ada yang berubah, dia bertindak.</li>
+      <li><b>Poller.</b> Tungguin sesuatu kelar (build, deploy), lanjut pas siap.</li>
+      <li><b>Stop condition.</b> Kasih syarat berhenti ("stop kalau 2x cek kosong") biar nggak jalan selamanya.</li>
+    </ul>
+    <p class="takeaway">Loop = AI yang kerja <em>pas lo nggak ada</em>. Ini titik di mana waktu lo mulai beneran balik.</p>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">D2</p>
+    <h3>Background tasks &amp; cron — bikin permanen</h3>
+    <p>Loop hidup selama sesi lo kebuka. Buat yang harus jalan terus walau lo tutup laptop, lo turunin ke <strong>cron</strong> — penjadwal OS yang ngejalanin script otomatis.</p>
+    <pre><span class="c"># crontab: tiap hari jam 08:05, sync transaksi</span>
+<span class="v">5 1 * * *</span> /usr/bin/python3 ~/sync.py >> ~/sync.log 2>&1</pre>
+    <p>Beda peran, jangan ketuker:</p>
+    <ul>
+      <li><b>Cron</b> = otot. Jalanin <em>script</em> yang sama, buta, tepat waktu. Cocok buat tugas mekanis fixed.</li>
+      <li><b>Loop</b> = otot + otak. Jalanin <em>agent</em> yang bisa nalar &amp; mutusin tiap putaran. Cocok buat yang butuh judgment.</li>
+    </ul>
+    <p class="takeaway">Pola matang dulu di loop (manual, fleksibel) → baru turunin ke cron pas udah jadi rutinitas pasti.</p>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">D3</p>
+    <h3>Subagents — delegasi ke spesialis</h3>
+    <p><strong>Subagent</strong> itu agent terpisah yang lo kasih satu tugas, jalan di konteks sendiri yang bersih, terus balikin hasilnya. Kenapa dipisah?</p>
+    <ul>
+      <li><b>Jaga konteks utama tetap bersih.</b> Riset yang makan 50 file dikerjain di subagent — lo cuma terima kesimpulannya, bukan sampah-nya.</li>
+      <li><b>Paralel.</b> Lima subagent bisa jalan bareng, tiap-tiap garap potongan beda.</li>
+      <li><b>Spesialisasi.</b> Tiap agent bisa punya keahlian &amp; tool sendiri.</li>
+    </ul>
+    <div class="tryit">
+      <h4>Pola</h4>
+      <p><em>"Sebar 4 subagent buat nyari bug — masing-masing pegang satu modul — terus kumpulin temuannya jadi satu laporan."</em> Lo cuma baca laporan akhir; kerja kasarnya keurus paralel.</p>
+    </div>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">D4</p>
+    <h3>Bangun agent squad / fleet</h3>
+    <p>Subagent sekali-pakai itu bagus. Tapi kekuatan beneran muncul pas lo bikin <strong>squad permanen</strong> — agent custom yang nempel di project lo, tiap-tiap punya peran, tool, dan aturan sendiri. Definisinya satu file Markdown:</p>
+    <p class="fname">.claude/agents/reviewer.md</p>
+    <pre><span class="v">---</span>
+<span class="v">name:</span> reviewer
+<span class="v">description:</span> <span class="s">Review kode buat bug & security. Pakai sebelum merge.</span>
+<span class="v">tools:</span> Read, Grep, Bash
+<span class="v">model:</span> sonnet
+<span class="v">---</span>
+Lo reviewer senior. Fokus correctness & keamanan.
+Jangan ngedit kode — lapor temuan + saran fix doang.</pre>
+    <p>Sekali kebikin, lo bisa route kerjaan ke dia: <em>"suruh reviewer cek branch ini"</em>. Punya beberapa = lo punya tim: ada yang riset, ada yang nulis, ada yang QA. Persis kayak ngebangun departemen, tapi isinya agent.</p>
+    <p class="takeaway">Frontmatter (name/description/tools/model) itu "job desc"-nya. Description yang jelas bikin Claude tau kapan manggil agent yang mana.</p>
+  </div>
+
+  <div class="lesson">
+    <p class="ln">D5</p>
+    <h3>Orchestration — manage subagents</h3>
+    <p>Begitu punya squad, kerjaan lo berubah jadi <strong>orchestrator</strong>: nentuin apa yang jalan paralel, apa yang berurutan, dan gimana hasilnya digabung. Dua pola dasar:</p>
+    <ul>
+      <li><b>Parallel (fan-out).</b> Banyak agent jalan bareng, nggak saling nunggu. Cepet, cocok buat kerjaan independen — sweep, riset multi-sumber, review multi-dimensi.</li>
+      <li><b>Pipeline.</b> Output agent satu jadi input agent berikutnya. Cocok buat alur bertahap — temukan → verifikasi → rangkum.</li>
+    </ul>
+    <div class="tryit">
+      <h4>Aturan main orchestrator</h4>
+      <p>Fan-out pas tugas <em>independen</em>. Pipeline pas tiap tahap <em>butuh</em> hasil tahap sebelumnya. Dan selalu ada satu langkah <strong>verifikasi</strong> di ujung — jangan percaya gitu aja hasil yang belum dicek.</p>
+    </div>
+    <p class="takeaway">Di titik ini lo nggak nyentuh kode lagi — lo ngatur siapa-ngerjain-apa. Itu arti <em>D: Direct</em>. Lo udah mimpin, bukan ngetik.</p>
+  </div>
+</section>
+
+<!-- wrap-up -->
+<section class="module" id="wrap-up">
+  <div class="cta-band">
+    <h2>L → E → A → D</h2>
+    <p>Dari nyuruh satu prompt, sampai mimpin sekawanan agent. Itu jaraknya — dan sekarang lo punya petanya. Jalanin satu tahap tiap minggu, jangan loncat: tiap tahap ngebangun fondasi buat yang berikutnya.</p>
+    <a class="btn" href="index.html">← Semua course</a>
+    <a class="btn ghost" href="https://aidia.uk">aidia.uk ↗</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="fb">
+      <span class="wm">aidia<i>.</i> <b class="acad" style="font-size:15px;color:var(--violet)">Academy</b></span>
+    </div>
+    <p><strong>Claude Code Mastery with LEAD</strong> — Course 01, Aidia Academy · by Muslih · <a href="https://aidia.uk">aidia.uk</a><br>
+    LEAD = Learn · Establish · Attach · Direct. Materi disusun dari praktek harian ngejalanin Claude Code, bukan teori. Detail command bisa beda antar versi — cek dokumentasi resmi buat sintaks terbaru.</p>
+  </div>
+</footer>
+
+</body>
+</html>

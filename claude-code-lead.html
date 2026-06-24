@@ -73,7 +73,7 @@
     <div class="mt">
       <p class="kq">Tahap 1 · Drive the tool</p>
       <h2>Learn</h2>
-      <p>Sebelum bisa mimpin, lo harus bisa nyetir. Modul ini bikin lo nyaman ngomong sama Claude Code: apa bedanya sama chat biasa, gimana nyetir biar dia paham, dan gimana dia gerak tanpa bikin lo deg-degan.</p>
+      <p>Sebelum bisa mimpin, kamu harus bisa nyetir. Modul ini bikin kamu nyaman ngomong sama Claude Code: apa bedanya sama chat biasa, gimana nyetir biar dia paham, dan gimana dia gerak tanpa bikin kamu deg-degan.</p>
       <p class="lcount">5 lesson</p>
     </div>
   </div>
@@ -81,8 +81,8 @@
   <div class="lesson">
     <p class="ln">L1</p>
     <h3>Apa itu Claude Code — agentic loop vs chatbot</h3>
-    <p>Chatbot itu cuma <strong>ngomong</strong>: lo nanya, dia jawab teks, selesai. Claude Code itu <strong>kerja</strong>. Dia jalan di terminal, di dalam folder project lo, dan punya tangan: bisa baca file, ngedit file, jalanin command, nyari ke seluruh repo, sampai commit ke git.</p>
-    <p>Kuncinya satu kata: <em>agentic loop</em>. Lo kasih satu tujuan, dia muter sendiri — <strong>baca konteks → mikir → ambil aksi (pakai tool) → cek hasil → lanjut</strong> — sampai tujuannya kelar. Bukan satu balasan, tapi serangkaian langkah nyata.</p>
+    <p>Chatbot itu cuma <strong>ngomong</strong>: kamu nanya, dia jawab teks, selesai. Claude Code itu <strong>kerja</strong>. Dia jalan di terminal, di dalam folder project kamu, dan punya tangan: bisa baca file, ngedit file, jalanin command, nyari ke seluruh repo, sampai commit ke git.</p>
+    <p>Kuncinya satu kata: <em>agentic loop</em>. Kamu kasih satu tujuan, dia muter sendiri — <strong>baca konteks → mikir → ambil aksi (pakai tool) → cek hasil → lanjut</strong> — sampai tujuannya kelar. Bukan satu balasan, tapi serangkaian langkah nyata.</p>
     <div class="diagram">
       <p class="dlbl">Agentic loop — muter sampai kelar, bukan sekali jawab</p>
       <div class="looprow">
@@ -100,54 +100,54 @@
   <div class="lesson">
     <p class="ln">L2</p>
     <h3>Setup &amp; first run</h3>
-    <p>Claude Code = CLI. Lo install sekali, terus jalanin dari dalam folder project. Begitu masuk, dia langsung "nyadar" konteks repo lo.</p>
+    <p>Claude Code = CLI. Kamu install sekali, terus jalanin dari dalam folder project. Begitu masuk, dia langsung "nyadar" konteks repo kamu.</p>
     <pre><span class="c"># install (sekali aja)</span>
 <span class="k">npm install</span> -g @anthropic-ai/claude-code
 
-<span class="c"># masuk ke project lo, lalu start</span>
-<span class="k">cd</span> ~/project-gw
+<span class="c"># masuk ke project kamu, lalu start</span>
+<span class="k">cd</span> ~/project
 <span class="k">claude</span></pre>
-    <p>Sekarang lo di dalam sesi interaktif. Ketik tujuan lo pakai bahasa biasa. Dia bakal nanya izin pas mau ngedit/ngejalanin sesuatu yang berdampak (lebih lanjut di L5).</p>
+    <p>Sekarang kamu di dalam sesi interaktif. Ketik tujuan kamu pakai bahasa biasa. Dia bakal nanya izin pas mau ngedit/ngejalanin sesuatu yang berdampak (lebih lanjut di L5).</p>
     <div class="tryit">
       <h4>Coba</h4>
-      <p>Buka project lo, jalanin <code class="inl">claude</code>, terus ketik: <em>"Jelasin struktur project ini ke gw, file mana yang jadi entry point."</em> Perhatiin: dia baca file dulu sebelum jawab — itu agentic loop yang lagi jalan.</p>
+      <p>Buka project kamu, jalanin <code class="inl">claude</code>, terus ketik: <em>"Jelasin struktur project ini, file mana yang jadi entry point."</em> Perhatiin: dia baca file dulu sebelum jawab — itu agentic loop yang lagi jalan.</p>
     </div>
   </div>
 
   <div class="lesson">
     <p class="ln">L3</p>
     <h3>Prompting yang nendang</h3>
-    <p>Hasil jelek 90% gara-gara prompt ngambang, bukan AI-nya bodoh. Empat hal yang bikin prompt lo nendang:</p>
+    <p>Hasil jelek 90% gara-gara prompt ngambang, bukan AI-nya bodoh. Empat hal yang bikin prompt kamu nendang:</p>
     <ul>
       <li><b>Spesifik soal hasil.</b> Bukan "rapihin kode ini", tapi "pecah fungsi ini jadi 3, kasih nama yang jelas, jangan ubah behavior".</li>
       <li><b>Kasih konteks &amp; file.</b> Tunjuk file-nya langsung: <em>"di <code class="inl">src/auth.ts</code>, ..."</em>. Dia kerja jauh lebih akurat kalau tau harus liat ke mana.</li>
-      <li><b>Kasih peran.</b> "Lo reviewer keamanan" beda hasilnya sama "lo junior dev". Peran nyetel cara dia mikir.</li>
+      <li><b>Kasih peran.</b> "Kamu reviewer keamanan" beda hasilnya sama "kamu junior dev". Peran nyetel cara dia mikir.</li>
       <li><b>Sebut kondisi selesai.</b> "Beres kalau <code class="inl">npm test</code> hijau" — dia jadi tau kapan harus berhenti, dan bakal ngecek sendiri.</li>
     </ul>
-    <p class="takeaway">Prompt yang bagus = brief yang bagus. Bayangin lo lagi nge-brief orang, bukan ngetik ke Google.</p>
+    <p class="takeaway">Prompt yang bagus = brief yang bagus. Bayangin kamu lagi nge-brief orang, bukan ngetik ke Google.</p>
   </div>
 
   <div class="lesson">
     <p class="ln">L4</p>
     <h3>Plan mode — mikir dulu sebelum gerak</h3>
-    <p>Buat perubahan gede, lo nggak mau dia langsung ngedit 12 file. <strong>Plan mode</strong> bikin Claude Code nyusun rencana dulu — file apa yang disentuh, urutan langkah, trade-off — dan <em>nungguin approval lo</em> sebelum nyentuh apa pun.</p>
-    <p>Alurnya: lo masuk plan mode, kasih tujuan, dia balikin rencana, lo baca → approve / revisi → baru dia eksekusi. Ini ngubah "semoga dia bener" jadi "gw udah liat rencananya, gas".</p>
+    <p>Buat perubahan gede, kamu nggak mau dia langsung ngedit 12 file. <strong>Plan mode</strong> bikin Claude Code nyusun rencana dulu — file apa yang disentuh, urutan langkah, trade-off — dan <em>nungguin approval kamu</em> sebelum nyentuh apa pun.</p>
+    <p>Alurnya: kamu masuk plan mode, kasih tujuan, dia balikin rencana, kamu baca → approve / revisi → baru dia eksekusi. Ini ngubah "semoga dia bener" jadi "rencananya udah jelas, gas".</p>
     <div class="tryit">
       <h4>Kapan dipakai</h4>
-      <p>Refactor lintas-file, fitur baru, migrasi, atau apa pun yang lo sendiri belum yakin pendekatannya. Buat edit kecil/jelas, skip — plan mode malah mperlambat.</p>
+      <p>Refactor lintas-file, fitur baru, migrasi, atau apa pun yang kamu sendiri belum yakin pendekatannya. Buat edit kecil/jelas, skip — plan mode malah mperlambat.</p>
     </div>
   </div>
 
   <div class="lesson">
     <p class="ln">L5</p>
     <h3>Baca, edit &amp; run dengan aman</h3>
-    <p>Claude Code default-nya hati-hati: dia <strong>minta izin</strong> sebelum ngedit file atau jalanin command yang berdampak. Lo yang pegang rem. Tiga hal yang perlu lo paham:</p>
+    <p>Claude Code default-nya hati-hati: dia <strong>minta izin</strong> sebelum ngedit file atau jalanin command yang berdampak. Kamu yang pegang rem. Tiga hal yang perlu kamu paham:</p>
     <ul>
       <li><b>Permission prompt.</b> Tiap aksi berisiko (hapus, overwrite, command asing) bakal munta konfirmasi. Baca dulu, baru iya.</li>
-      <li><b>Allowlist.</b> Command yang sering &amp; aman (kayak <code class="inl">npm test</code>, <code class="inl">git status</code>) bisa lo izinin permanen biar nggak ditanya terus.</li>
-      <li><b>Git = jaring pengaman.</b> Kerja di branch, commit sering. Salah arah tinggal balik. Ini kebiasaan paling murah yang nyelametin lo.</li>
+      <li><b>Allowlist.</b> Command yang sering &amp; aman (kayak <code class="inl">npm test</code>, <code class="inl">git status</code>) bisa kamu izinin permanen biar nggak ditanya terus.</li>
+      <li><b>Git = jaring pengaman.</b> Kerja di branch, commit sering. Salah arah tinggal balik. Ini kebiasaan paling murah yang nyelametin kamu.</li>
     </ul>
-    <p class="takeaway">Aman itu bukan soal AI-nya dipercaya 100% — tapi soal lo punya undo. Branch + commit = undo.</p>
+    <p class="takeaway">Aman itu bukan soal AI-nya dipercaya 100% — tapi soal kamu punya undo. Branch + commit = undo.</p>
   </div>
 </section>
 
@@ -158,7 +158,7 @@
     <div class="mt">
       <p class="kq">Tahap 2 · Kasih aturan &amp; ingatan</p>
       <h2>Establish</h2>
-      <p>Di tahap L lo ngulang-ngulang konteks tiap sesi. Capek. Tahap E bikin Claude Code <em>inget</em> — aturan main, gaya kerja, dan perintah favorit lo jadi permanen, nggak usah diketik ulang.</p>
+      <p>Di tahap L kamu ngulang-ngulang konteks tiap sesi. Capek. Tahap E bikin Claude Code <em>inget</em> — aturan main, gaya kerja, dan perintah favorit kamu jadi permanen, nggak usah diketik ulang.</p>
       <p class="lcount">4 lesson</p>
     </div>
   </div>
@@ -166,7 +166,7 @@
   <div class="lesson">
     <p class="ln">E1</p>
     <h3>CLAUDE.md — aturan yang selalu dipatuhi</h3>
-    <p><code class="inl">CLAUDE.md</code> itu file di root project lo yang <strong>otomatis kebaca tiap sesi</strong>. Anggap kayak onboarding doc buat anggota tim baru — isinya hal yang lo nggak mau jelasin berulang-ulang.</p>
+    <p><code class="inl">CLAUDE.md</code> itu file di root project kamu yang <strong>otomatis kebaca tiap sesi</strong>. Anggap kayak onboarding doc buat anggota tim baru — isinya hal yang kamu nggak mau jelasin berulang-ulang.</p>
     <p class="fname">CLAUDE.md</p>
     <pre><span class="c"># Project: Toko Online API</span>
 
@@ -181,14 +181,14 @@
 <span class="c">## Jangan</span>
 - Jangan commit ke `main` langsung. Selalu branch.
 - Jangan ubah file di `legacy/` tanpa nanya dulu.</pre>
-    <p>Cara cepet bikin: jalanin <code class="inl">/init</code> di sesi — Claude Code bakal nyusun draf CLAUDE.md dari isi repo lo, tinggal lo rapihin.</p>
-    <p class="takeaway">Setiap kali lo ngoreksi hal yang sama dua kali, itu sinyal: tulis di CLAUDE.md, biar nggak ada koreksi ketiga.</p>
+    <p>Cara cepet bikin: jalanin <code class="inl">/init</code> di sesi — Claude Code bakal nyusun draf CLAUDE.md dari isi repo kamu, tinggal kamu rapihin.</p>
+    <p class="takeaway">Setiap kali kamu ngoreksi hal yang sama dua kali, itu sinyal: tulis di CLAUDE.md, biar nggak ada koreksi ketiga.</p>
   </div>
 
   <div class="lesson">
     <p class="ln">E2</p>
     <h3>Memory &amp; continuity antar-sesi</h3>
-    <p>CLAUDE.md itu aturan project. <strong>Memory</strong> itu hal yang lo mau Claude inget lintas waktu — keputusan, preferensi, status kerjaan yang lagi jalan. Bedanya: CLAUDE.md lo tulis tangan; memory bisa lo suruh dia simpen sendiri.</p>
+    <p>CLAUDE.md itu aturan project. <strong>Memory</strong> itu hal yang kamu mau Claude inget lintas waktu — keputusan, preferensi, status kerjaan yang lagi jalan. Bedanya: CLAUDE.md kamu tulis tangan; memory bisa kamu suruh dia simpen sendiri.</p>
     <ul>
       <li><b>Simpan keputusan, bukan kode.</b> "Kita pindah dari REST ke tRPC karena X" — itu konteks yang nggak keliatan dari git history.</li>
       <li><b>Tulis tanggal absolut.</b> "deadline 13 Juli 2026", bukan "minggu depan" — biar masih kebaca sesi depan.</li>
@@ -203,7 +203,7 @@
   <div class="lesson">
     <p class="ln">E3</p>
     <h3>Context management — jaga tetap lean</h3>
-    <p>Claude Code punya "ruang ingat" terbatas per sesi (context window). Kalau lo jejelin semua, dia jadi lemot &amp; gampang ilang fokus. Aturan main:</p>
+    <p>Claude Code punya "ruang ingat" terbatas per sesi (context window). Kalau kamu jejelin semua, dia jadi lemot &amp; gampang ilang fokus. Aturan main:</p>
     <ul>
       <li><b>Tunjuk file, jangan paste.</b> Bilang "liat <code class="inl">src/api.ts</code>", jangan tempel 800 baris ke chat. Dia bisa baca sendiri.</li>
       <li><b>Mulai bersih buat tugas baru.</b> Selesai satu kerjaan gede, <code class="inl">/clear</code> sebelum mulai yang nggak nyambung — biar konteks lama nggak ngeganggu.</li>
@@ -215,16 +215,16 @@
   <div class="lesson">
     <p class="ln">E4</p>
     <h3>Skills &amp; slash commands</h3>
-    <p>Kalau ada alur kerja yang lo ulang terus — "review PR ini pakai checklist gw", "bikin draft changelog" — jadiin <strong>slash command</strong>. Sekali bikin, tinggal panggil <code class="inl">/nama</code> kapan aja.</p>
+    <p>Kalau ada alur kerja yang kamu ulang terus — "review PR ini pakai checklist kamu", "bikin draft changelog" — jadiin <strong>slash command</strong>. Sekali bikin, tinggal panggil <code class="inl">/nama</code> kapan aja.</p>
     <p class="fname">.claude/commands/review.md</p>
-    <pre><span class="c"># Review checklist gw</span>
+    <pre><span class="c"># Review checklist kamu</span>
 Review perubahan di branch ini. Cek:
 1. Ada test buat tiap fungsi baru?
 2. Error handling-nya bener?
 3. Ada secret/key yang ke-commit?
 Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> per poin.</pre>
-    <p>Sekarang tinggal ketik <code class="inl">/review</code> — dia jalanin checklist itu tanpa lo ngetik ulang. Ini SOP lo, dikodifikasi.</p>
-    <p class="takeaway">Slash command = SOP yang bisa dieksekusi. Kerjaan berulang lo berhenti jadi ketikan, jadi satu kata.</p>
+    <p>Sekarang tinggal ketik <code class="inl">/review</code> — dia jalanin checklist itu tanpa kamu ngetik ulang. Ini SOP kamu, dikodifikasi.</p>
+    <p class="takeaway">Slash command = SOP yang bisa dieksekusi. Kerjaan berulang kamu berhenti jadi ketikan, jadi satu kata.</p>
   </div>
 </section>
 
@@ -235,7 +235,7 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
     <div class="mt">
       <p class="kq">Tahap 3 · Sambung ke sistem nyata</p>
       <h2>Attach</h2>
-      <p>Sejauh ini Claude Code cuma "lihat" folder lo. Tahap A nyolokin dia ke dunia luar — GitHub, database, Notion, Figma, browser — biar dia bisa narik &amp; ngubah data beneran, bukan cuma file lokal.</p>
+      <p>Sejauh ini Claude Code cuma "lihat" folder kamu. Tahap A nyolokin dia ke dunia luar — GitHub, database, Notion, Figma, browser — biar dia bisa narik &amp; ngubah data beneran, bukan cuma file lokal.</p>
       <p class="lcount">4 lesson</p>
     </div>
   </div>
@@ -243,11 +243,11 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
   <div class="lesson">
     <p class="ln">A1</p>
     <h3>MCP servers — apa &amp; kenapa</h3>
-    <p><strong>MCP (Model Context Protocol)</strong> itu colokan standar buat nyambungin Claude ke tool/data luar. Satu MCP server = satu set "tangan" baru. Pasang GitHub MCP → Claude bisa baca issue &amp; bikin PR. Pasang database MCP → dia bisa query data lo.</p>
+    <p><strong>MCP (Model Context Protocol)</strong> itu colokan standar buat nyambungin Claude ke tool/data luar. Satu MCP server = satu set "tangan" baru. Pasang GitHub MCP → Claude bisa baca issue &amp; bikin PR. Pasang database MCP → dia bisa query data kamu.</p>
     <pre><span class="c"># nambah MCP server (contoh)</span>
 <span class="k">claude mcp add</span> github
 <span class="k">claude mcp list</span>      <span class="c"># liat yang udah konek</span></pre>
-    <p>Kenapa ini gede: tanpa MCP, AI cuma bisa ngomongin sistem lo. Dengan MCP, dia bisa <em>beraksi</em> di sistem lo — itu beda antara "kasih saran" dan "ngerjain".</p>
+    <p>Kenapa ini gede: tanpa MCP, AI cuma bisa ngomongin sistem kamu. Dengan MCP, dia bisa <em>beraksi</em> di sistem kamu — itu beda antara "kasih saran" dan "ngerjain".</p>
     <div class="diagram">
       <p class="dlbl">MCP — satu colokan = satu set "tangan" baru</p>
       <div class="hub">
@@ -269,7 +269,7 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
   <div class="lesson">
     <p class="ln">A2</p>
     <h3>Integrasi yang sering kepake</h3>
-    <p>Lo nggak perlu semua. Pasang yang nyentuh kerjaan lo:</p>
+    <p>Kamu nggak perlu semua. Pasang yang nyentuh kerjaan kamu:</p>
     <ul>
       <li><b>GitHub</b> — baca issue, review &amp; bikin PR, cari kode lintas repo.</li>
       <li><b>Database (Postgres/Supabase)</b> — query, cek skema, jalanin migrasi.</li>
@@ -286,18 +286,18 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
   <div class="lesson">
     <p class="ln">A3</p>
     <h3>Git workflow — branch, commit, PR</h3>
-    <p>Claude Code paling kuat pas dikasih alur git penuh lewat <code class="inl">gh</code> (GitHub CLI). Dia bisa bikin branch, commit dengan pesan yang rapi, push, sampai buka PR — semua diarahin sama lo.</p>
-    <pre><span class="c"># Claude bisa ngejalanin alur ini buat lo:</span>
+    <p>Claude Code paling kuat pas dikasih alur git penuh lewat <code class="inl">gh</code> (GitHub CLI). Dia bisa bikin branch, commit dengan pesan yang rapi, push, sampai buka PR — semua diarahin sama kamu.</p>
+    <pre><span class="c"># Claude bisa ngejalanin alur ini buat kamu:</span>
 <span class="k">git</span> checkout -b <span class="v">fix/login-bug</span>
 <span class="c"># ...dia ngedit & test...</span>
 <span class="k">git</span> commit -m <span class="s">"fix: handle null session on login"</span>
 <span class="k">gh</span> pr create --fill</pre>
     <ul>
-      <li><b>Branch dulu, selalu.</b> Apalagi kalau CLAUDE.md lo udah larang commit ke <code class="inl">main</code>.</li>
+      <li><b>Branch dulu, selalu.</b> Apalagi kalau CLAUDE.md kamu udah larang commit ke <code class="inl">main</code>.</li>
       <li><b>Commit kecil &amp; sering.</b> Gampang di-review, gampang di-revert.</li>
-      <li><b>Biarin dia nulis PR body.</b> Dia inget semua yang diubah — ringkasannya biasanya lebih lengkap dari yang lo tulis manual.</li>
+      <li><b>Biarin dia nulis PR body.</b> Dia inget semua yang diubah — ringkasannya biasanya lebih lengkap dari yang kamu tulis manual.</li>
     </ul>
-    <p class="takeaway">Git bukan cuma version control di sini — itu kontrak antara lo &amp; agent. Tiap commit = checkpoint yang lo setujui.</p>
+    <p class="takeaway">Git bukan cuma version control di sini — itu kontrak antara kamu &amp; agent. Tiap commit = checkpoint yang kamu setujui.</p>
   </div>
 
   <div class="lesson">
@@ -305,7 +305,7 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
     <h3>Hooks &amp; permissions — atur otomatis</h3>
     <p>Dua tuas kontrol penting ada di <code class="inl">settings.json</code>:</p>
     <ul>
-      <li><b>Permissions / allowlist.</b> Tentuin command apa yang boleh jalan tanpa nanya. Sekali set, sesi lo jadi mulus.</li>
+      <li><b>Permissions / allowlist.</b> Tentuin command apa yang boleh jalan tanpa nanya. Sekali set, sesi kamu jadi mulus.</li>
       <li><b>Hooks.</b> Otomatisin perilaku <em>di sekitar</em> aksi Claude. Contoh: tiap habis ngedit file, otomatis jalanin formatter. Atau sebelum commit, otomatis jalanin lint.</li>
     </ul>
     <p class="fname">.claude/settings.json (potongan)</p>
@@ -317,8 +317,8 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
     }]
   }
 }</pre>
-    <p>Bedanya sama nyuruh manual: hook itu <strong>dijamin jalan</strong> tiap kondisi kepenuhin — bukan "semoga AI inget". Lo mindahin aturan dari harapan ke mesin.</p>
-    <p class="takeaway">Hook = kebiasaan yang dipasang ke sistem. Lo nggak perlu inget format kode — mesinnya yang inget.</p>
+    <p>Bedanya sama nyuruh manual: hook itu <strong>dijamin jalan</strong> tiap kondisi kepenuhin — bukan "semoga AI inget". Kamu mindahin aturan dari harapan ke mesin.</p>
+    <p class="takeaway">Hook = kebiasaan yang dipasang ke sistem. Kamu nggak perlu inget format kode — mesinnya yang inget.</p>
   </div>
 </section>
 
@@ -329,7 +329,7 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
     <div class="mt">
       <p class="kq">Tahap 4 · Mimpin tanpa ngerjain</p>
       <h2>Direct</h2>
-      <p>Puncaknya. Di sini lo berhenti ngetik tiap langkah dan mulai <em>mengarahkan</em>: nyuruh AI jalan sendiri sesuai waktu (loop), dan ngebagi kerjaan ke banyak agent spesialis yang jalan paralel (subagents). Lo naik dari operator jadi konduktor.</p>
+      <p>Puncaknya. Di sini kamu berhenti ngetik tiap langkah dan mulai <em>mengarahkan</em>: nyuruh AI jalan sendiri sesuai waktu (loop), dan ngebagi kerjaan ke banyak agent spesialis yang jalan paralel (subagents). Kamu naik dari operator jadi konduktor.</p>
       <p class="lcount">5 lesson</p>
     </div>
   </div>
@@ -348,13 +348,13 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
       <li><b>Poller.</b> Tungguin sesuatu kelar (build, deploy), lanjut pas siap.</li>
       <li><b>Stop condition.</b> Kasih syarat berhenti ("stop kalau 2x cek kosong") biar nggak jalan selamanya.</li>
     </ul>
-    <p class="takeaway">Loop = AI yang kerja <em>pas lo nggak ada</em>. Ini titik di mana waktu lo mulai beneran balik.</p>
+    <p class="takeaway">Loop = AI yang kerja <em>pas kamu nggak ada</em>. Ini titik di mana waktu kamu mulai beneran balik.</p>
   </div>
 
   <div class="lesson">
     <p class="ln">D2</p>
     <h3>Background tasks &amp; cron — bikin permanen</h3>
-    <p>Loop hidup selama sesi lo kebuka. Buat yang harus jalan terus walau lo tutup laptop, lo turunin ke <strong>cron</strong> — penjadwal OS yang ngejalanin script otomatis.</p>
+    <p>Loop hidup selama sesi kamu kebuka. Buat yang harus jalan terus walau kamu tutup laptop, kamu turunin ke <strong>cron</strong> — penjadwal OS yang ngejalanin script otomatis.</p>
     <pre><span class="c"># crontab: tiap hari jam 08:05, sync transaksi</span>
 <span class="v">5 1 * * *</span> /usr/bin/python3 ~/sync.py >> ~/sync.log 2>&1</pre>
     <p>Beda peran, jangan ketuker:</p>
@@ -379,9 +379,9 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
   <div class="lesson">
     <p class="ln">D3</p>
     <h3>Subagents — delegasi ke spesialis</h3>
-    <p><strong>Subagent</strong> itu agent terpisah yang lo kasih satu tugas, jalan di konteks sendiri yang bersih, terus balikin hasilnya. Kenapa dipisah?</p>
+    <p><strong>Subagent</strong> itu agent terpisah yang kamu kasih satu tugas, jalan di konteks sendiri yang bersih, terus balikin hasilnya. Kenapa dipisah?</p>
     <ul>
-      <li><b>Jaga konteks utama tetap bersih.</b> Riset yang makan 50 file dikerjain di subagent — lo cuma terima kesimpulannya, bukan sampah-nya.</li>
+      <li><b>Jaga konteks utama tetap bersih.</b> Riset yang makan 50 file dikerjain di subagent — kamu cuma terima kesimpulannya, bukan sampah-nya.</li>
       <li><b>Paralel.</b> Lima subagent bisa jalan bareng, tiap-tiap garap potongan beda.</li>
       <li><b>Spesialisasi.</b> Tiap agent bisa punya keahlian &amp; tool sendiri.</li>
     </ul>
@@ -409,7 +409,7 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
   <div class="lesson">
     <p class="ln">D4</p>
     <h3>Bangun agent squad / fleet</h3>
-    <p>Subagent sekali-pakai itu bagus. Tapi kekuatan beneran muncul pas lo bikin <strong>squad permanen</strong> — agent custom yang nempel di project lo, tiap-tiap punya peran, tool, dan aturan sendiri. Definisinya satu file Markdown:</p>
+    <p>Subagent sekali-pakai itu bagus. Tapi kekuatan beneran muncul pas kamu bikin <strong>squad permanen</strong> — agent custom yang nempel di project kamu, tiap-tiap punya peran, tool, dan aturan sendiri. Definisinya satu file Markdown:</p>
     <p class="fname">.claude/agents/reviewer.md</p>
     <pre><span class="v">---</span>
 <span class="v">name:</span> reviewer
@@ -417,16 +417,16 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
 <span class="v">tools:</span> Read, Grep, Bash
 <span class="v">model:</span> sonnet
 <span class="v">---</span>
-Lo reviewer senior. Fokus correctness & keamanan.
+Kamu reviewer senior. Fokus correctness & keamanan.
 Jangan ngedit kode — lapor temuan + saran fix doang.</pre>
-    <p>Sekali kebikin, lo bisa route kerjaan ke dia: <em>"suruh reviewer cek branch ini"</em>. Punya beberapa = lo punya tim: ada yang riset, ada yang nulis, ada yang QA. Persis kayak ngebangun departemen, tapi isinya agent.</p>
+    <p>Sekali kebikin, kamu bisa route kerjaan ke dia: <em>"suruh reviewer cek branch ini"</em>. Punya beberapa = kamu punya tim: ada yang riset, ada yang nulis, ada yang QA. Persis kayak ngebangun departemen, tapi isinya agent.</p>
     <p class="takeaway">Frontmatter (name/description/tools/model) itu "job desc"-nya. Description yang jelas bikin Claude tau kapan manggil agent yang mana.</p>
   </div>
 
   <div class="lesson">
     <p class="ln">D5</p>
     <h3>Orchestration — manage subagents</h3>
-    <p>Begitu punya squad, kerjaan lo berubah jadi <strong>orchestrator</strong>: nentuin apa yang jalan paralel, apa yang berurutan, dan gimana hasilnya digabung. Dua pola dasar:</p>
+    <p>Begitu punya squad, kerjaan kamu berubah jadi <strong>orchestrator</strong>: nentuin apa yang jalan paralel, apa yang berurutan, dan gimana hasilnya digabung. Dua pola dasar:</p>
     <ul>
       <li><b>Parallel (fan-out).</b> Banyak agent jalan bareng, nggak saling nunggu. Cepet, cocok buat kerjaan independen — sweep, riset multi-sumber, review multi-dimensi.</li>
       <li><b>Pipeline.</b> Output agent satu jadi input agent berikutnya. Cocok buat alur bertahap — temukan → verifikasi → rangkum.</li>
@@ -450,7 +450,7 @@ Jangan ngedit kode — lapor temuan + saran fix doang.</pre>
       <h4>Aturan main orchestrator</h4>
       <p>Fan-out pas tugas <em>independen</em>. Pipeline pas tiap tahap <em>butuh</em> hasil tahap sebelumnya. Dan selalu ada satu langkah <strong>verifikasi</strong> di ujung — jangan percaya gitu aja hasil yang belum dicek.</p>
     </div>
-    <p class="takeaway">Di titik ini lo nggak nyentuh kode lagi — lo ngatur siapa-ngerjain-apa. Itu arti <em>D: Direct</em>. Lo udah mimpin, bukan ngetik.</p>
+    <p class="takeaway">Di titik ini kamu nggak nyentuh kode lagi — kamu ngatur siapa-ngerjain-apa. Itu arti <em>D: Direct</em>. Kamu udah mimpin, bukan ngetik.</p>
   </div>
 </section>
 
@@ -458,7 +458,7 @@ Jangan ngedit kode — lapor temuan + saran fix doang.</pre>
 <section class="module" id="wrap-up">
   <div class="cta-band">
     <h2>L → E → A → D</h2>
-    <p>Dari nyuruh satu prompt, sampai mimpin sekawanan agent. Itu jaraknya — dan sekarang lo punya petanya. Jalanin satu tahap tiap minggu, jangan loncat: tiap tahap ngebangun fondasi buat yang berikutnya.</p>
+    <p>Dari nyuruh satu prompt, sampai mimpin sekawanan agent. Itu jaraknya — dan sekarang kamu punya petanya. Jalanin satu tahap tiap minggu, jangan loncat: tiap tahap ngebangun fondasi buat yang berikutnya.</p>
     <a class="btn" href="index.html">← Semua course</a>
     <a class="btn ghost" href="https://aidia.uk">aidia.uk ↗</a>
   </div>

@@ -12,10 +12,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 <div class="grad-top"></div>
+<div class="reading-progress"></div>
 
 <header class="site-head">
   <div class="wrap">
@@ -34,8 +35,8 @@
     <h1>Claude Code Mastery — with LEAD</h1>
     <p class="tagline">Berhenti jadi user yang nyuruh-nyuruh. Belajar <em>mimpin</em> Claude Code: dari nulis prompt yang bener, sampai ngatur sekawanan agent yang kerja sendiri.</p>
     <div class="meta">
-      <span><b>4</b> modul</span>
-      <span><b>18</b> lesson</span>
+      <span><b data-count="4">4</b> modul</span>
+      <span><b data-count="18">18</b> lesson</span>
       <span><b>Path:</b> prompting → managing subagents</span>
       <span><b>Bahasa:</b> ID + EN (natural)</span>
     </div>
@@ -85,7 +86,7 @@
       <p class="kq">Tahap 1 · Drive the tool</p>
       <h2>Learn</h2>
       <p>Sebelum bisa mimpin, kamu harus bisa nyetir. Modul ini bikin kamu nyaman ngomong sama Claude Code: apa bedanya sama chat biasa, gimana nyetir biar dia paham, dan gimana dia gerak tanpa bikin kamu deg-degan.</p>
-      <p class="lcount">5 lesson</p>
+      <p class="lcount"><b data-count="5">5</b> lesson</p>
     </div>
   </div>
 
@@ -171,7 +172,7 @@
       <p class="kq">Tahap 2 · Kasih aturan &amp; ingatan</p>
       <h2>Establish</h2>
       <p>Di tahap L kamu ngulang-ngulang konteks tiap sesi. Capek. Tahap E bikin Claude Code <em>inget</em> — aturan main, gaya kerja, dan perintah favorit kamu jadi permanen, nggak usah diketik ulang.</p>
-      <p class="lcount">4 lesson</p>
+      <p class="lcount"><b data-count="4">4</b> lesson</p>
     </div>
   </div>
 
@@ -248,7 +249,7 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
       <p class="kq">Tahap 3 · Sambung ke sistem nyata</p>
       <h2>Attach</h2>
       <p>Sejauh ini Claude Code cuma "lihat" folder kamu. Tahap A nyolokin dia ke dunia luar — GitHub, database, Notion, Figma, browser — biar dia bisa narik &amp; ngubah data beneran, bukan cuma file lokal.</p>
-      <p class="lcount">4 lesson</p>
+      <p class="lcount"><b data-count="4">4</b> lesson</p>
     </div>
   </div>
 
@@ -342,7 +343,7 @@ Kasih output ringkas: <span class="s">PASS</span> / <span class="s">FIX</span> p
       <p class="kq">Tahap 4 · Mimpin tanpa ngerjain</p>
       <h2>Direct</h2>
       <p>Puncaknya. Di sini kamu berhenti ngetik tiap langkah dan mulai <em>mengarahkan</em>: nyuruh AI jalan sendiri sesuai waktu (loop), dan ngebagi kerjaan ke banyak agent spesialis yang jalan paralel (subagents). Kamu naik dari operator jadi konduktor.</p>
-      <p class="lcount">5 lesson</p>
+      <p class="lcount"><b data-count="5">5</b> lesson</p>
     </div>
   </div>
 
@@ -477,6 +478,83 @@ Jangan ngedit kode — lapor temuan + saran fix doang.</pre>
 </section>
 
 </main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var counters = [].slice.call(document.querySelectorAll('[data-count]'));
+
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var dur = 1100, start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased);
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if(reduce){
+    counters.forEach(function(el){ el.textContent = el.getAttribute('data-count'); });
+    return; // honour reduced-motion: no animation at all
+  }
+  document.body.classList.add('anim');
+
+  // reading progress bar
+  var bar = document.querySelector('.reading-progress');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    if(bar) bar.style.width = (p * 100) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // scroll-reveal + diagram node stagger
+  var revs = [].slice.call(document.querySelectorAll('.lesson,.diagram,.mod-head,.callout,.cta-band,.ladder,.art-head'));
+  revs.forEach(function(el){ el.classList.add('reveal'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('in');
+      if(e.target.classList.contains('diagram')){
+        var ns = e.target.querySelectorAll('.node');
+        [].forEach.call(ns, function(n, i){
+          n.style.transitionDelay = (i * 70) + 'ms';
+          n.classList.add('np');
+        });
+      }
+      io.unobserve(e.target);
+    });
+  }, {threshold: 0.15});
+  revs.forEach(function(el){ io.observe(el); });
+
+  // counters
+  var cio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target); }
+    });
+  }, {threshold: 0.6});
+  counters.forEach(function(el){ cio.observe(el); });
+
+  // active module in sticky nav
+  var navlinks = {};
+  [].forEach.call(document.querySelectorAll('.mod-nav a'), function(a){ navlinks[a.getAttribute('href')] = a; });
+  var sio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var link = navlinks['#' + e.target.id];
+      if(link && e.isIntersecting){
+        for(var k in navlinks) navlinks[k].classList.remove('active');
+        link.classList.add('active');
+      }
+    });
+  }, {rootMargin: '-45% 0px -50% 0px'});
+  [].forEach.call(document.querySelectorAll('section.module'), function(s){ sio.observe(s); });
+})();
+</script>
 
 <footer class="site-foot">
   <div class="wrap">

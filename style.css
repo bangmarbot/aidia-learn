@@ -465,7 +465,7 @@ body.anim .diagram.in .loopback{animation:none}
 [data-theme="light"] pre .k{color:#22d3ee}
 [data-theme="light"] pre .s{color:#34d399}
 [data-theme="light"] pre .v{color:#9a7dff}
-[data-theme="light"] .cta-band .btn{color:#fff}
+[data-theme="light"] .cta-band .btn:not(.ghost){color:#fff}
 
 /* theme toggle button */
 .head-right{display:flex;align-items:center;gap:10px}

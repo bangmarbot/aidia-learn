@@ -487,3 +487,11 @@ body{transition:background-color .25s ease,color .25s ease}
   .art-head .meta{gap:6px 14px}
   .twoup .miniflow{justify-content:center}
 }
+
+/* ============================================================
+   v6 — fix: .art-head & .crumb used `padding:_ 0 _` (horizontal 0)
+   which overrode .wrap's `0 24px` gutter → judul/breadcrumb nempel
+   tepi kiri (parah di mobile). Restore the 24px side gutter.
+   ============================================================ */
+.crumb{padding-left:24px;padding-right:24px}
+.art-head{padding-left:24px;padding-right:24px}
